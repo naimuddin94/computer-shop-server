@@ -10,17 +10,17 @@ const connectDB = require("./database/connectDB");
 app.use(express.json());
 app.use(cors());
 
-
+app.use("/products", productRoutes);
 
 app.get("/", (req, res) => {
   res.send("server is running");
 });
 
-const main = async (req, res) => { 
-    await connectDB()
-    app.listen(port, () => {
-      console.log(`server listening on port ${port}`);
-    });
-}
+const main = async (req, res) => {
+  await connectDB();
+  app.listen(port, () => {
+    console.log(`server listening on port ${port}`);
+  });
+};
 
-main()
+main();

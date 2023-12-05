@@ -6,7 +6,7 @@ const Product = mongoose.model("Product", productSchema);
 // get all products
 const getAllProducts = async (req, res) => {
   try {
-    const products = await Product.find();
+    const products = await Product.find({approved: true});
     res.status(200).send(products);
   } catch (error) {
     handleError(res, error);
