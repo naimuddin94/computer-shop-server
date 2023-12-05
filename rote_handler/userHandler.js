@@ -5,20 +5,14 @@ const User = mongoose.model("User", userSchema);
 
 // get all users
 const getAllUsers = async (req, res) => {
-  try {
-    const users = await User.find();
-    res.send(users);
-  } catch (error) {
-    handleError(res, error);
+  const email = req.query.email;
+  const query = {};
+  if (email) {
+    query.email = email;
   }
-};
-
-// get user by email
-const getUserByEmail = async (req, res) => {
-  const email = req.params.email;
   try {
-    const user = await User.findOne({ email: email });
-    res.send(user);
+    const users = await User.find(query);
+    res.send(users);
   } catch (error) {
     handleError(res, error);
   }
@@ -35,4 +29,4 @@ const createUser = async (req, res) => {
   }
 };
 
-module.exports = { getAllUsers, getUserByEmail, createUser };
+module.exports = { getAllUsers, createUser };
