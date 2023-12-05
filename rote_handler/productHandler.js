@@ -6,7 +6,7 @@ const Product = mongoose.model("Product", productSchema);
 // get all products
 const getAllProducts = async (req, res) => {
   try {
-    const products = await Product.find({approved: true});
+    const products = await Product.find({ approved: true });
     res.status(200).send(products);
   } catch (error) {
     handleError(res, error);
@@ -35,4 +35,43 @@ const createProduct = async (req, res) => {
   }
 };
 
-module.exports = { getAllProducts, getProductById, createProduct };
+// update product
+const updateProduct = async (req, res) => {
+  const id = req.params.id;
+  const {
+    name,
+    cover_image,
+    images,
+    category,
+    brand,
+    price,
+    features,
+    description,
+  } = req.body;
+  try {
+    await Product.findByIdAndUpdate(
+      id,
+      {
+        name,
+        cover_image,
+        images,
+        category,
+        brand,
+        price,
+        features,
+        description,
+      },
+      { new: true }
+    );
+    res.json({ message: "Updated successfully" });
+  } catch (error) {
+    handleError(res, error);
+  }
+};
+
+module.exports = {
+  getAllProducts,
+  getProductById,
+  createProduct,
+  updateProduct,
+};
