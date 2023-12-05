@@ -22,7 +22,7 @@ const productSchema = mongoose.Schema({
     required: true,
   },
   price: {
-    typeof: Number,
+    type: Number,
     required: true,
   },
   features: {
@@ -42,8 +42,8 @@ const productSchema = mongoose.Schema({
     default: false,
   },
   created_at: {
-    typeof: String,
-    default: Date.now(),
+    type: Date,
+    default: Date.now,
   },
 });
 
