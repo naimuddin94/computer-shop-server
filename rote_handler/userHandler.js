@@ -15,7 +15,7 @@ const getAllUsers = async (req, res) => {
 
 // get user by email
 const getUserByEmail = async (req, res) => {
-  const email = req.query.email;
+  const email = req.params.email;
   try {
     const user = await User.findOne({ email: email });
     res.send(user);

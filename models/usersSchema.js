@@ -12,6 +12,12 @@ const userSchema = mongoose.Schema({
   email: {
     type: String,
     required: true,
+    unique: true,
+  },
+  role: {
+    type: String,
+    enum: ["admin", "manager", "operator", "basic"],
+    default: "basic",
   },
   created_at: {
     type: Date,
