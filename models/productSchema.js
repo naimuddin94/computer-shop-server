@@ -37,8 +37,14 @@ const productSchema = mongoose.Schema({
     name: String,
     email: String,
   },
+  approved: {
+    type: Boolean,
+    default: false,
+  },
   created_at: {
     typeof: String,
     default: Date.now(),
   },
 });
+
+module.exports = productSchema;
