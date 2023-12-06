@@ -13,4 +13,19 @@ const getAllCart = async (req, res) => {
   }
 };
 
+// get cart items by email address
+const getAllCartByEmail = async (req, res) => {
+  const email = req.params.email;
+  try {
+    const cart = await Cart.find({ email: email });
+
+    if (!cart) {
+      return res.status(404).json({ message: "No cart found" });
+    }
+    res.send(cart);
+  } catch (error) {
+    handleError(res, error);
+  }
+};
+
 module.exports = { getAllCart };
