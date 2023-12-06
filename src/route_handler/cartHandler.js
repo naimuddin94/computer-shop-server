@@ -29,14 +29,35 @@ const getAllCartByEmail = async (req, res) => {
 };
 
 // create a new cart
-const createCart = async (req, res) => { 
+const createCart = async (req, res) => {
   const cart = req.body;
   try {
-    await Cart.create(cart)
-    res.status(201).json({message: "Cart created successfully"});
+    await Cart.create(cart);
+    res.status(201).json({ message: "Cart created successfully" });
   } catch (error) {
     handleError(res, error);
   }
-}
+};
 
-module.exports = { getAllCart, getAllCartByEmail, createCart };
+// added cart to new product list
+const addProductToCart = async (req, res) => {
+  const email = req.params.email;
+  const newProductId = req.body;
+  try {
+    await Cart.findOneAndUpdate(
+      { email },
+      { $push: { product_ids: newProductId } },
+      { new: true }
+    );
+    res.json({ message: "Product added successfully" });
+  } catch (error) {
+    handleError(res, error);
+  }
+};
+
+module.exports = {
+  getAllCart,
+  getAllCartByEmail,
+  createCart,
+  addProductToCart,
+};
