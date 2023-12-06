@@ -28,4 +28,4 @@ const getAllCartByEmail = async (req, res) => {
   }
 };
 
-module.exports = { getAllCart };
+module.exports = { getAllCart, getAllCartByEmail };
