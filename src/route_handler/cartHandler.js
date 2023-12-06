@@ -28,4 +28,15 @@ const getAllCartByEmail = async (req, res) => {
   }
 };
 
-module.exports = { getAllCart, getAllCartByEmail };
+// create a new cart
+const createCart = async (req, res) => { 
+  const cart = req.body;
+  try {
+    await Cart.create(cart)
+    res.status(201).json({message: "Cart created successfully"});
+  } catch (error) {
+    handleError(res, error);
+  }
+}
+
+module.exports = { getAllCart, getAllCartByEmail, createCart };
