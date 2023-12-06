@@ -4,7 +4,7 @@ const {
   createProduct,
   updateProduct,
   deleteProduct,
-} = require("../rote_handler/productHandler");
+} = require("../route_handler/productHandler");
 
 const router = require("express").Router();
 
