@@ -22,7 +22,7 @@ const getProductById = async (req, res) => {
     if (!product) {
       res.status(404).json({ message: "Product not found" });
     }
-    
+
     res.send(product);
   } catch (error) {
     handleError(res, error);
@@ -32,6 +32,7 @@ const getProductById = async (req, res) => {
 // create a new product
 const createProduct = async (req, res) => {
   const product = req.body;
+  console.log(product);
   try {
     await Product.create(product);
     res.status(201).json({ message: "Product added successfully" });

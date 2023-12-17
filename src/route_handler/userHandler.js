@@ -22,6 +22,10 @@ const getAllUsers = async (req, res) => {
 const createUser = async (req, res) => {
   const user = req.body;
   try {
+    const isExist = await User.findOne({ email: user.email });
+    if (isExist) {
+      return res.json({ message: "User already exists" });
+    }
     await User.create(user);
     res.status(201).json({ message: "Account created successfully" });
   } catch (error) {

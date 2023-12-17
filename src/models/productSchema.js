@@ -5,10 +5,6 @@ const productSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  cover_image: {
-    type: String,
-    required: true,
-  },
   images: {
     type: [String],
     required: true,
